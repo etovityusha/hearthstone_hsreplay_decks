@@ -44,7 +44,7 @@ class HSReplayETL(ETLBase):
         self.requests_session = requests.Session()
         if proxy:
             self.requests_session.proxies.update(proxy)
-        with ChromeWrapper(executable_path='chromedriver', proxy=proxy) as self.driver:
+        with ChromeWrapper(proxy=proxy) as self.driver:
             self.hsreplay_etl()
 
     def _extract(self) -> List[HsReplayDeck]:

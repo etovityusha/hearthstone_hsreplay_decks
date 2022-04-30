@@ -6,10 +6,11 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR .
 
 RUN apt-get -y update
-RUN apt-get install chromium -y
 RUN apt-get -y upgrade
-RUN apt install apt-utils
 
 COPY . .
+
+RUN apt-get install -y chromium
+RUN apt-get install -y chromium-driver
+
 RUN pip install -r requirements.txt
-RUN chmod +x drivers/chromedriver_90_x

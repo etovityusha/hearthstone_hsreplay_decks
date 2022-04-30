@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 
 
 class ChromeWrapper(webdriver.Chrome):
-    def __init__(self, proxy=None, executable_path='chromedriver'):
+    def __init__(self, proxy=None, executable_path='/usr/bin/chromedriver'):
         self.proxy = proxy
         desired_capabilities = webdriver.DesiredCapabilities.CHROME.copy()
         if self.proxy:
