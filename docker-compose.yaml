@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  web:
+    build: .
+    command: uvicorn run:app --reload --host 0.0.0.0 --port 6100 --proxy-headers
+    volumes:
+      - .:/app
+    ports:
+      - "6100:6000"
+    depends_on:
+      - db
+  db:
+    image: postgres:13.3
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file: .env
+    ports:
+      - "6101:6101"
+    command: -p 6101
+
+
+volumes:
+  postgres_data:
