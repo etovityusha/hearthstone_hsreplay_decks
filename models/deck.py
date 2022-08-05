@@ -1,8 +1,8 @@
 import sqlalchemy as sa
 from sqlalchemy.orm import relationship, validates
 
-from core.models.base import BaseModelORM
-from core.models.etl_run import ETLRun
+from models.base import BaseModelORM
+from models.etl_run import ETLRun
 
 
 class ETLDeck(BaseModelORM):

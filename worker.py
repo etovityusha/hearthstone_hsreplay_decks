@@ -3,7 +3,7 @@ import os
 from celery import Celery
 from celery.schedules import crontab
 
-from core.hsreplay_etl import HSReplayETL
+from controllers.etl.hsreplay_etl import HSReplayETL
 
 celery = Celery(__name__)
 celery.conf.broker_url = os.environ.get("CELERY_BROKER_URL", "redis://redis:6379")
