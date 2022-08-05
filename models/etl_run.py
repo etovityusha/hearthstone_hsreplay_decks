@@ -1,6 +1,6 @@
 import sqlalchemy as sa
 
-from core.models.base import BaseModelORM
+from models.base import BaseModelORM
 
 
 class ETLRun(BaseModelORM):

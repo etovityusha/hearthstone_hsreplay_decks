@@ -5,11 +5,11 @@ import requests
 from bs4 import BeautifulSoup
 from pydantic import BaseModel
 
-from core.chrome_wrapper import ChromeWrapper
-from core.etl_abc import ETLBase
-from core.models.deck import ETLDeck
-from core.models.etl_run import ETLRun
+from controllers.chrome_wrapper import ChromeWrapper
+from controllers.etl.etl_abc import ETLBase
 from database import SessionLocal
+from models.deck import ETLDeck
+from models.etl_run import ETLRun
 
 
 class HSReplayArchetype(BaseModel):

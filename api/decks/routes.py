@@ -1,13 +1,13 @@
 from collections import defaultdict
 
-from fastapi import APIRouter, Depends, HTTPException
 import sqlalchemy as sa
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from api.decks.schemas import ETLResult, ArchetypeDecks
-from core.models.etl_run import ETLRun
-from core.models.deck import ETLDeck
 from database import get_db
+from models.etl_run import ETLRun
+from models.deck import ETLDeck
 
 router = APIRouter(
     prefix="/decks",
