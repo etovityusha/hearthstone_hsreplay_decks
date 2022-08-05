@@ -1,16 +1,17 @@
-FROM python:3.9
+FROM python:3.10.5
 
 ENV PYTHONDONTWRITEBYCODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR .
+WORKDIR /app
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
 
-COPY . .
-
 RUN apt-get install -y chromium
 RUN apt-get install -y chromium-driver
 
+COPY requirements.txt /app
 RUN pip install -r requirements.txt
+COPY . /app
+
