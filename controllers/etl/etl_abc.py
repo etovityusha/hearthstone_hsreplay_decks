@@ -4,9 +4,9 @@ import abc
 class ETLBase(abc.ABC):
     @abc.abstractmethod
     def __init__(self, **kwargs):
-        self.hsreplay_etl()
+        self.execute()
 
-    def hsreplay_etl(self):
+    def execute(self):
         extracted = self._extract()
         transformed = self._transform(extracted)
         return self._load(transformed)
