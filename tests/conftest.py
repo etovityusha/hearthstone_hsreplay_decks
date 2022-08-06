@@ -2,7 +2,7 @@ import uuid
 
 import pytest
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy_utils import create_database, drop_database
 from starlette.testclient import TestClient
 
@@ -26,14 +26,17 @@ def test_session_maker() -> sessionmaker:
 
 
 @pytest.fixture()
-def test_client(test_session_maker: sessionmaker) -> TestClient:
-    def override_get_db():
-        try:
-            db = test_session_maker()
-            yield db
-        finally:
-            db.close()
+def db(test_session_maker) -> Session:
+    session = test_session_maker()
+    try:
+        yield session
+    finally:
+        session.close()
 
+
+@pytest.fixture()
+def test_client(db: Session) -> TestClient:
     fastapi_app = create_app()
-    fastapi_app.dependency_overrides[get_db] = override_get_db
-    yield TestClient(fastapi_app)
+    fastapi_app.dependency_overrides[get_db] = lambda: db
+    with TestClient(fastapi_app) as client:
+        yield client
