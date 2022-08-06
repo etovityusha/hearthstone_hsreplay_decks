@@ -1,11 +1,13 @@
 from datetime import datetime
 
 import sqlalchemy as sa
+from sqlalchemy.orm import as_declarative
 
-from database import Base
+meta = sa.MetaData()
 
 
-class BaseModelORM(Base):
+@as_declarative(metadata=meta)
+class BaseModelORM:
     __abstract__ = True
     created_at = sa.Column(
         sa.DateTime, default=datetime.utcnow, server_default=sa.func.now()
