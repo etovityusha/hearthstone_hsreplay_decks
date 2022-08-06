@@ -1,15 +1,13 @@
 import uvicorn
 from fastapi import FastAPI
 
-from api.decks.routes import router as decks_router
-from api.healthcheck.routes import router as healthcheck_router
+from api.router import api_router
 
 
 def create_app() -> FastAPI:
-    app = FastAPI()
-    app.include_router(decks_router)
-    app.include_router(healthcheck_router)
-    return app
+    fastapi_app = FastAPI()
+    fastapi_app.include_router(api_router)
+    return fastapi_app
 
 
 app = create_app()

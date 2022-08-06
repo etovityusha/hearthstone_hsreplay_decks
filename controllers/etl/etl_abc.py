@@ -4,7 +4,7 @@ import abc
 class ETLBase(abc.ABC):
     @abc.abstractmethod
     def __init__(self, **kwargs):
-        self.execute()
+        pass
 
     def execute(self):
         extracted = self._extract()
